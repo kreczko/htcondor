@@ -15,7 +15,7 @@ LeaveJobInQueue = (time() - CompletionDate) > <%= @leave_job_in_queue %>
 <% else -%>
 LeaveJobInQueue = False
 <% end -%>
-SUBMIT_EXPRS = $(SUBMIT_EXPRS) use_x509userproxy,request_memory,LeaveJobInQueue
+SUBMIT_EXPRS = $(SUBMIT_EXPRS) request_memory,LeaveJobInQueue
 DELEGATE_JOB_GSI_CREDENTIALS = False
 EMAIL_DOMAIN = <%= @email_domain %>
 
