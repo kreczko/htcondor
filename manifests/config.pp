@@ -161,13 +161,18 @@ class htcondor::config (
   $use_cert_map_file              = false,
   $use_krb_map_file               = false,
   $cert_map_file                  = '/etc/condor/certificate_mapfile',
-  $krb_map_file                   = '/etc/condor/kerberos_mapfile',) {
+  $krb_map_file                   = '/etc/condor/kerberos_mapfile',
+  $machine_list_prefix            = 'condor_pool@$(UID_DOMAIN)/',) {
   $now                 = strftime('%d.%m.%Y_%H.%M')
   $ce_daemon_list      = ['SCHEDD']
   $worker_daemon_list  = ['STARTD']
   $ganglia_daemon_list = ['GANGLIAD']
   $auth_string = construct_auth_string($use_fs_auth, $use_password_auth,
   $use_kerberos_auth, $use_claim_to_be_auth)
+  $manager_string = join_machine_list($machine_list_prefix, $managers)
+  $ce_string = join_machine_list($machine_list_prefix, $computing_elements)
+  $wn_string = join_machine_list($machine_list_prefix, $worker_nodes)
+
   if $enable_multicore {
     $manage_daemon_list = ['COLLECTOR', 'NEGOTIATOR', 'DEFRAG']
   } else {

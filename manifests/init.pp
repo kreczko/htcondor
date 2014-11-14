@@ -185,6 +185,7 @@ class htcondor (
   $use_krb_map_file               = false,
   $cert_map_file                  = '/etc/condor/certificate_mapfile',
   $krb_map_file                   = '/etc/condor/kerberos_mapfile',
+  $machine_list_prefix            = 'condor_pool@$(UID_DOMAIN)/'
   ) {
   class { 'htcondor::repositories':
     install_repos   => $install_repositories,
@@ -263,6 +264,7 @@ class htcondor (
     use_krb_map_file               => $use_krb_map_file,
     cert_map_file                  => $cert_map_file,
     krb_map_file                   => $krb_map_file,
+    machine_list_prefix            => $machine_list_prefix,
   }
 
   class { 'htcondor::service':
