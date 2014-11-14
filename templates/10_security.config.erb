@@ -15,6 +15,7 @@ TRUST_UID_DOMAIN = True
 <% end -%>
 
 # Machines & users
+# this needs to be done by a function
 CMS = <%= @managers.flatten.join(', ') %>
 CES = <%= @computing_elements.flatten.join(', ') %>
 WNS = <%= @worker_nodes.flatten.join(', ') %>
@@ -42,7 +43,11 @@ COLLECTOR.ALLOW_ADVERTISE_STARTD = $(WNS)
 
 SCHEDD.ALLOW_WRITE = $(USERS), $(CES)
 
-ALLOW_DAEMON = condor@$(UID_DOMAIN)/*.$(UID_DOMAIN), condor_pool@$(UID_DOMAIN)/*.$(UID_DOMAIN), $(FULL_HOSTNAME)
+ALLOW_DAEMON = condor@$(UID_DOMAIN), \
+               condor@$(UID_DOMAIN)/*.$(UID_DOMAIN), \
+               condor_pool@$(UID_DOMAIN), \
+               condor_pool@$(UID_DOMAIN)/*.$(UID_DOMAIN), \
+               $(FULL_HOSTNAME)
 ALLOW_ADMINISTRATOR = root@$(UID_DOMAIN)/$(IP_ADDRESS), condor_pool@$(UID_DOMAIN)/$(IP_ADDRESS), $(CMS)
 ALLOW_CONFIG = root@$(FULL_HOSTNAME)
 
