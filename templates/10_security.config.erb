@@ -15,7 +15,9 @@ TRUST_UID_DOMAIN = True
 <% end -%>
 
 # Machines & users
-# this needs to be done by a function
+# because HTCondor uses user 'condor_pool' for remote access
+# and user 'condor' for local the variables below need to include
+# both users in case a machine has more than one role (i.e. manager + CE)
 CMS = <%= @manager_string %>
 CES = <%= @ce_string %>
 WNS = <%= @wn_string %>
