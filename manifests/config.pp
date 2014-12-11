@@ -164,7 +164,9 @@ class htcondor::config (
   $use_pid_namespaces             = false,
   $cert_map_file                  = '/etc/condor/certificate_mapfile',
   $krb_map_file                   = '/etc/condor/kerberos_mapfile',
-  $machine_list_prefix            = 'condor_pool@$(UID_DOMAIN)/',) {
+  $machine_list_prefix            = 'condor_pool@$(UID_DOMAIN)/',
+  $max_walltime                   = "80 * 60 * 60",
+  $max_cputime                    = "80 * 60 * 60",) {
   # purge all non-managed config files from /etc/condor/config.d
   file {'/etc/condor/config.d':
     ensure  => directory,
