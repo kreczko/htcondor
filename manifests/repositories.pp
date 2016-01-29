@@ -14,7 +14,7 @@ class htcondor::repositories (
           yumrepo { 'htcondor-development':
             descr    => "HTCondor Development RPM Repository for Redhat Enterprise Linux ${major_release}",
             baseurl  => "http://research.cs.wisc.edu/htcondor/yum/development/rhel${major_release}",
-            enabled  => 1,
+            enabled  => 0,
             gpgcheck => 0,
             priority => "${condor_priority}",
             exclude  => 'condor.i386, condor.i686',
@@ -24,7 +24,7 @@ class htcondor::repositories (
           yumrepo { 'htcondor-stable':
             descr    => "HTCondor Stable RPM Repository for Redhat Enterprise Linux ${major_release}",
             baseurl  => "http://research.cs.wisc.edu/htcondor/yum/stable/rhel${major_release}",
-            enabled  => 1,
+            enabled  => 0,
             gpgcheck => 0,
             priority => "${condor_priority}",
             exclude  => 'condor.i386, condor.i686',
